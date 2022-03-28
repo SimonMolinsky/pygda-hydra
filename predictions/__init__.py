@@ -1,0 +1,1 @@
+from predictions.models.base import forecast

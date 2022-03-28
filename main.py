@@ -1,9 +1,10 @@
 import hydra
+import pandas as pd
 from hydra.utils import to_absolute_path
 from omegaconf import DictConfig
 from predictions import forecast
 from predictions.utils import get_frame, get_series
-from predictions.viz.show import plot_single
+from predictions.viz.show import plot_single, plot_with_confidence
 
 
 def transform_relative_path(relative_path: str):
@@ -20,7 +21,14 @@ def transform_relative_path(relative_path: str):
 @hydra.main(config_path='conf', config_name='config')
 def run_prediction(cfg: DictConfig) -> None:
     # Vars: data
-    data_path = transform_relative_path(cfg.data.loc)
+
+    # Check if data loc is a single location or multiple
+    _dloc = cfg.data.loc
+    if isinstance(_dloc, str):
+        data_path = [transform_relative_path(cfg.data.loc)]
+    else:
+        data_path = [transform_relative_path(rel_path) for rel_path in _dloc]
+
     date_col_name = cfg.data.date_col
     value_col_name = cfg.data.value_col
     # Vars: model
@@ -31,17 +39,21 @@ def run_prediction(cfg: DictConfig) -> None:
     is_plot = cfg.app.plot
 
     # Run: get data
-    sample = get_frame(data_path)
-    sample_series = get_series(sample, date_col_name, value_col_name)
-    # Run: model
-    pred = forecast(sample_series,
-                    steps_ahead=steps,
-                    freq=freq,
-                    model_type=model_type)
+    for dpath in data_path:
+        sample = get_frame(dpath)
+        sample_series = get_series(sample, date_col_name, value_col_name)
+        # Run: model
+        pred = forecast(sample_series,
+                        steps_ahead=steps,
+                        freq=freq,
+                        model_type=model_type)
 
-    # Run: app
-    if is_plot:
-        plot_single(pred)
+        # Run: app
+        if is_plot:
+            if isinstance(pred, pd.DataFrame):
+                plot_with_confidence(pred)
+            else:
+                plot_single(pred)
 
 
 if __name__ == '__main__':

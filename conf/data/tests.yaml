@@ -1,0 +1,7 @@
+loc:
+  - 'data/tests/t_noise.csv'
+  - 'data/tests/t_sine.csv'
+  - 'data/tests/t_sine_sine.csv'
+  - 'data/tests/t_zeros.csv'
+value_col: temperature
+date_col: time

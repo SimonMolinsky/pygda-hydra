@@ -1,8 +1,8 @@
 defaults:
   - experiment: dev
-  - data: dev
+  - data: tests
   - app: dev
   - _self_
 
 experiment:
-  steps_ahead: 100
+  model: bootstrap

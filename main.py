@@ -19,7 +19,6 @@ def transform_relative_path(relative_path: str):
 
 @hydra.main(config_path='conf', config_name='config')
 def run_prediction(cfg: DictConfig) -> None:
-    print(cfg)
     # Vars: data
     data_path = transform_relative_path(cfg.data.loc)
     date_col_name = cfg.data.date_col

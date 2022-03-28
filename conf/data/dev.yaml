@@ -1,0 +1,3 @@
+loc: 'data/dev/input_temperature.csv'
+value_col: temperature
+date_col: time

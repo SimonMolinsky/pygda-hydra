@@ -1,2 +1,8 @@
 defaults:
-  - development: config
+  - experiment: dev
+  - data: dev
+  - app: dev
+  - _self_
+
+experiment:
+  steps_ahead: 100

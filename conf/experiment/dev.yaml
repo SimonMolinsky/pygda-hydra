@@ -1,0 +1,3 @@
+model: random
+steps_ahead: 10
+frequency: D

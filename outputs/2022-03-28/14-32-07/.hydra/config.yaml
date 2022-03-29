@@ -1,0 +1,15 @@
+experiment:
+  model: bootstrap
+  steps_ahead: 10
+  frequency: '10.01'
+data:
+  loc:
+  - data/tests/t_noise.csv
+  - data/tests/t_sine.csv
+  - data/tests/t_sine_sine.csv
+  - data/tests/t_zeros.csv
+  value_col: temperature
+  date_col: time
+app:
+  plot: true
+  store_results: true

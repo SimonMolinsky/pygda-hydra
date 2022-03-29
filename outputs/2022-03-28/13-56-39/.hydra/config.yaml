@@ -1,0 +1,12 @@
+development:
+  experiment:
+    model: random
+    steps_ahead: 10
+    frequency: D
+  data:
+    loc: data/dev/input_temperature.csv
+    value_col: temperature
+    date_col: time
+  app:
+    plot: true
+    store_results: true

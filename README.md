@@ -1,5 +1,9 @@
 # Hydra for Data Science - PyGDA
 
+## Repo
+
+https://github.com/SimonMolinsky/pygda-hydra
+
 ## Setup
 
 1. Set Virtualenv, min version of Python == 3.8

@@ -1,0 +1,11 @@
+defaults:
+  - experiment: dev
+  - data: tests
+  - app: dev
+  - _self_
+
+experiment:
+  model: bootstrap
+
+config_x:
+  author: Szymon
